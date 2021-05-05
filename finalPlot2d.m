@@ -29,19 +29,22 @@ function [] = finalPlot2d ()
 
 
     plot(x,y,'Parent',gui.ax)%creates the plot 
-    set(gui.ax,'YLim',[-1 1])%can change y axis amounts here
+    set(gui.ax,'YLim',[-2 2])%can change y axis amounts here
     sliderCallback(gui.f)%initialize the x-axis
+end
+
+function [] = ExactVallCallback(~,~)
+    global gui;
+    gui.textBox.String = (sin(3.14159/2)); %ENTER TRIG FUNCTION HERE
+
 end
 
 function [] = sliderCallback(object,~)
     global gui;
     handles=guidata(object); 
-    axesVal=get(handles.slider,'Value');
-    set(handles.ax,'XLim',[-0.5 0.5]*handles.xwindow_size+axesVal)
+    axesVal=get(handles.slider,'Value'); %orients the slider with the x axes
+    set(handles.ax,'XLim',[-0.5 0.5]*handles.xwindow_size+axesVal) %sets the x axis with respect to the slider
 end
 
-function [] = ExactVallCallback(~,~)
-    global gui;
-    gui.textBox.String = (sin(0)); 
 
-end
+
